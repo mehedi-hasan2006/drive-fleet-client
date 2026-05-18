@@ -17,6 +17,7 @@ import {
   FaCarSide,
   FaFilter,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function ExploreCars({ cars = [] }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -229,13 +230,15 @@ export default function ExploreCars({ cars = [] }) {
                       >
                         Rent Now
                       </Button>
-                      <Button
-                        className="flex-1 border-2 border-blue-600 text-blue-600 font-semibold hover:bg-blue-50"
-                        variant="bordered"
-                        size="md"
-                      >
-                        Details
-                      </Button>
+                      <Link href={`/car-details/${car._id}`}>
+                        <Button
+                          className="flex-1 border-2 border-blue-600 text-blue-600 font-semibold hover:bg-blue-50"
+                          variant="bordered"
+                          size="md"
+                        >
+                          Details
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
