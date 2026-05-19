@@ -2,7 +2,14 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Checkbox, TextField, Label, InputGroup } from "@heroui/react";
+import {
+  Button,
+  Checkbox,
+  TextField,
+  Label,
+  InputGroup,
+  toast,
+} from "@heroui/react";
 import {
   FaGoogle,
   FaEnvelope,
@@ -16,15 +23,46 @@ import {
   FaKey,
 } from "react-icons/fa";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default function RegisterPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log("Form Data:", data);
+    const result = Object.fromEntries(formData.entries());
+
+    const { data, error } = await authClient.signUp.email(
+      {
+        email: result.email,
+        password: result.password,
+        name: result.name,
+        image: result.image,
+      },
+      {
+        onSuccess: (res) => {
+          //redirect to the dashboard or sign in page
+          toast.success("Registration Successful!");
+          router.push("/login");
+        },
+        onError: (res) => {
+          // display the error message
+          toast.danger(
+            res.error.message || "Registration Failed. Please try again.",
+          );
+        },
+      },
+    );
+  };
+
+  // Google Sign In Fucntion
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -344,6 +382,7 @@ export default function RegisterPage() {
 
               {/* Google Button */}
               <Button
+                onClick={handleGoogleSignIn}
                 variant="bordered"
                 className="w-full border-2 border-gray-200 bg-white hover:bg-gray-50 font-semibold text-gray-700 h-14 rounded-xl transition-all duration-300 hover:border-gray-300 hover:shadow-md group"
                 size="lg"
