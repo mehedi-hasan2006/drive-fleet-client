@@ -13,8 +13,13 @@ export const featuredCars = async () => {
 };
 
 // fetch single car details
-export const fetchSingleCar = async (id) => {
-  const res = await fetch(`${process.env.SERVER_API_URL}/cars/${id}`);
+export const fetchSingleCar = async (id, token) => {
+  const res = await fetch(`${process.env.SERVER_API_URL}/cars/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}` || "",
+    },
+  });
   const data = await res.json();
+
   return data;
 };

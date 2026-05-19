@@ -52,6 +52,8 @@ export default function LoginPage() {
         },
       },
     );
+
+    const { data: tokenData, error: tokenError } = await authClient.token();
   };
 
   // Google Sign In Fucntion

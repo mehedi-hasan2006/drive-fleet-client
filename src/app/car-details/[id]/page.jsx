@@ -23,10 +23,18 @@ import {
   FaRoad,
 } from "react-icons/fa";
 import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 async function SingleCarDetailsPage({ params }) {
   const { id } = await params;
-  const carDetails = await fetchSingleCar(id);
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  // Fetch car details using the provided ID and token
+  const carDetails = await fetchSingleCar(id, token);
 
   const {
     _id,
