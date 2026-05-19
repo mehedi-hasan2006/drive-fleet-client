@@ -39,6 +39,7 @@ function BookNowButton({ availabilityStatus, carDetails }) {
       email: session?.user?.email,
       carTitle: carDetails?.name,
       carImage: carDetails?.image,
+      carPrice : carDetails?.dailyRentPrice,
       driverNeed,
       message,
     };

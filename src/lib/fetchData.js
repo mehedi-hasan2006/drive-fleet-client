@@ -23,3 +23,16 @@ export const fetchSingleCar = async (id, token) => {
 
   return data;
 };
+
+// fetch bookings data for specific users
+
+export const fetchBookingsData = async (userId, token) => {
+  const res = await fetch(`${process.env.SERVER_API_URL}/bookings/${userId}`, {
+    headers: {
+      authorization: `Bearer ${token}` || "",
+    },
+  });
+
+  const data = res.json();
+  return data;
+};
