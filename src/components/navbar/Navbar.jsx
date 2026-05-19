@@ -18,6 +18,7 @@ import {
   FaBars,
   FaTimes,
   FaEnvelope,
+  FaList,
 } from "react-icons/fa";
 
 export default function Navbar() {
@@ -62,6 +63,7 @@ export default function Navbar() {
         { href: "/explore-cars", label: "Explore Cars", icon: FaCar },
         { href: "/add-car", label: "Add Cars", icon: FaPlusCircle },
         { href: "/my-profile", label: "My Profile", icon: FaUser },
+        { href: "/my-bookings", label: "My Bookings", icon: FaHistory },
       ].map(({ href, label, icon: Icon }) => (
         <li key={href}>
           <Link
@@ -218,22 +220,22 @@ export default function Navbar() {
                     </Link>
 
                     <Link
-                      href="#"
+                      href="/add-car"
                       onClick={() => setIsProfileOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-pink-50 rounded-xl transition-all group"
                     >
-                      <FaHeart className="w-4 h-4 text-pink-500" />
-                      <span className="flex-1">Favorites</span>
+                      <FaPlusCircle className="w-4 h-4 text-pink-500" />
+                      <span className="flex-1">Add Car</span>
                       <span className="text-xs text-gray-400">→</span>
                     </Link>
 
                     <Link
-                      href="#"
+                      href="/my-added-cars"
                       onClick={() => setIsProfileOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-all group"
                     >
-                      <FaCog className="w-4 h-4 text-gray-500" />
-                      <span className="flex-1">Settings</span>
+                      <FaList className="w-4 h-4 text-gray-500" />
+                      <span className="flex-1">My Added Cars</span>
                       <span className="text-xs text-gray-400">→</span>
                     </Link>
 
@@ -290,6 +292,7 @@ export default function Navbar() {
                     <Avatar.Image
                       alt={user?.name || "User"}
                       src={user?.image}
+                      referrerPolicy="no-referrer"
                     />
                     <Avatar.Fallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold">
                       {user?.name?.charAt(0) || "U"}

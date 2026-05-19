@@ -12,6 +12,7 @@ import {
   FieldError,
   InputGroup,
   toast,
+  Description,
 } from "@heroui/react";
 import {
   FaGoogle,
@@ -192,11 +193,11 @@ export default function LoginPage() {
                 className="w-full "
                 name="password"
                 type="password"
-                minLength={8}
+                minLength={6}
                 isRequired
                 validate={(value) => {
-                  if (value.length < 8) {
-                    return "Password must be at least 8 characters";
+                  if (value.length < 6) {
+                    return "Password must be at least 6 characters";
                   }
                   if (!/[A-Z]/.test(value)) {
                     return "Password must contain at least one uppercase letter";
@@ -234,6 +235,10 @@ export default function LoginPage() {
                     </Button>
                   </InputGroup.Suffix>
                 </InputGroup>
+                <Description>
+                  Must be at least 6 characters with 1 uppercase and 1 number
+                </Description>
+                <FieldError />
               </TextField>
 
               {/* Remember & Forgot */}

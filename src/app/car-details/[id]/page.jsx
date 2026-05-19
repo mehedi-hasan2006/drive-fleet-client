@@ -25,6 +25,7 @@ import {
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import BookNowButton from "@/components/BookNowButton/BookNowButton";
 
 async function SingleCarDetailsPage({ params }) {
   const { id } = await params;
@@ -46,6 +47,8 @@ async function SingleCarDetailsPage({ params }) {
     description,
     seatCapacity,
     pickupLocation,
+    bookingsCount,
+    lastBookingAt,
   } = carDetails;
 
   const statusConfig = {
@@ -228,8 +231,10 @@ async function SingleCarDetailsPage({ params }) {
               </div>
               <div className="bg-white rounded-xl p-4 text-center shadow-sm">
                 <FaCogs className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-800">Auto</div>
-                <div className="text-xs text-gray-500">Transmission</div>
+                <div className="text-2xl font-bold text-gray-800">
+                  {bookingsCount || 0}
+                </div>
+                <div className="text-xs text-gray-500">Total Booking</div>
               </div>
               <div className="bg-white rounded-xl p-4 text-center shadow-sm">
                 <FaGasPump className="w-6 h-6 text-green-500 mx-auto mb-2" />
@@ -238,30 +243,25 @@ async function SingleCarDetailsPage({ params }) {
               </div>
               <div className="bg-white rounded-xl p-4 text-center shadow-sm">
                 <FaCalendarAlt className="w-6 h-6 text-orange-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-800">2024</div>
-                <div className="text-xs text-gray-500">Year</div>
+                <div className="text-[20px] font-bold text-gray-800">
+                  {lastBookingAt
+                    ? new Date(lastBookingAt).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })
+                    : "N/A"}
+                </div>
+                <div className="text-xs text-gray-500">Last Booking</div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4">
-              <Button
-                color="primary"
-                size="lg"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 font-semibold text-lg py-7"
-                isDisabled={availabilityStatus !== "available"}
-              >
-                {availabilityStatus === "available"
-                  ? "Book Now"
-                  : "Not Available"}
-              </Button>
-              <Button
-                variant="bordered"
-                size="lg"
-                className="flex-1 border-2 border-gray-300 font-semibold text-lg py-7 hover:bg-gray-50"
-              >
-                Contact Owner
-              </Button>
+            <div className="w-full">
+              <BookNowButton
+                availabilityStatus={availabilityStatus}
+                carDetails={carDetails}
+              />
             </div>
           </div>
         </div>

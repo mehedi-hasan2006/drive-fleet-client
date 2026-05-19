@@ -9,6 +9,8 @@ import {
   Label,
   InputGroup,
   toast,
+  Description,
+  FieldError,
 } from "@heroui/react";
 import {
   FaGoogle,
@@ -68,7 +70,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       {/* Top Navigation */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
+      {/* <div className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
@@ -86,7 +88,7 @@ export default function RegisterPage() {
             <span className="text-blue-600">Sign In</span>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -280,11 +282,11 @@ export default function RegisterPage() {
                   className="w-full "
                   name="password"
                   type="password"
-                  minLength={8}
+                  minLength={6}
                   isRequired
                   validate={(value) => {
-                    if (value.length < 8) {
-                      return "Password must be at least 8 characters";
+                    if (value.length < 6) {
+                      return "Password must be at least 6 characters";
                     }
                     if (!/[A-Z]/.test(value)) {
                       return "Password must contain at least one uppercase letter";
@@ -324,6 +326,10 @@ export default function RegisterPage() {
                       </Button>
                     </InputGroup.Suffix>
                   </InputGroup>
+                  <Description>
+                    Must be at least 6 characters with 1 uppercase and 1 number
+                  </Description>
+                  <FieldError />
                 </TextField>
 
                 {/* Terms */}
