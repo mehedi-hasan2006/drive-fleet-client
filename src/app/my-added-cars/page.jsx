@@ -1,3 +1,4 @@
+// my added car 
 import { auth } from "@/lib/auth";
 import { fetchMyAddedCars } from "@/lib/fetchData";
 import { headers } from "next/headers";
@@ -22,6 +23,7 @@ import {
   FaPlus,
 } from "react-icons/fa";
 import DeleteButton from "@/components/DeleteButton/DeleteButton";
+import UpdateButton from "@/components/UpdateButton/UpdateButton";
 
 async function MyAddedCarsPage() {
   const { token } = await auth.api.getToken({
@@ -255,6 +257,7 @@ async function MyAddedCarsPage() {
                           {car.seatCapacity} Seats
                         </span>
                       </div>
+                      
                       <div className="flex items-center gap-2 text-gray-600">
                         <div className="p-1.5 bg-purple-50 rounded-lg">
                           <FaCogs className="w-3.5 h-3.5 text-purple-500" />
@@ -263,12 +266,22 @@ async function MyAddedCarsPage() {
                           {car.carType}
                         </span>
                       </div>
+
                       <div className="flex items-center gap-2 text-gray-600 col-span-2">
                         <div className="p-1.5 bg-green-50 rounded-lg">
                           <FaMapMarkerAlt className="w-3.5 h-3.5 text-green-500" />
                         </div>
                         <span className="text-sm truncate">
                           {car.pickupLocation}
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-gray-600 col-span-2">
+                        <div className="p-1.5 bg-green-50 rounded-lg">
+                          <FaDollarSign className="w-5 h-5 text-violet-500" />
+                        </div>
+                        <span className="text-xl text-violet-600 font-bold  truncate">
+                          {car.dailyRentPrice} $
                         </span>
                       </div>
                     </div>
@@ -296,11 +309,8 @@ async function MyAddedCarsPage() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3">
-                      <Button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl">
-                        <FaEdit className="w-4 h-4" />
-                        Update
-                      </Button>
+                    <div className="flex w-full gap-3">
+                      <UpdateButton car={car} carId= {car._id} />
                       <DeleteButton car={car} carId= {car._id} />
                     </div>
                   </div>

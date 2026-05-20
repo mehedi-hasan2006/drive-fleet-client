@@ -1,6 +1,3 @@
-// components/HeroSection.jsx
-"use client";
-
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import {
@@ -13,7 +10,6 @@ import {
   FaDollarSign,
   FaMapMarkerAlt,
   FaCalendarAlt,
-  FaUser,
 } from "react-icons/fa";
 
 export default function HeroSection() {
@@ -223,20 +219,6 @@ export default function HeroSection() {
           ></path>
         </svg>
       </div>
-
-      {/* Custom Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float 3s ease-in-out 1.5s infinite;
-        }
-      `}</style>
     </div>
   );
 }

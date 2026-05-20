@@ -64,3 +64,16 @@ export const deleteCarData = async (carId) => {
   const data = await res.json();
   return data;
 };
+
+// api for update car data
+export const updateCarData = async (carId, carData) => {
+  const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(carData),
+  });
+  const data = await res.json();
+  return data;
+};
