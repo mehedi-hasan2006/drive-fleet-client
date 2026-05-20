@@ -89,7 +89,7 @@ export default function CarListingForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <Card className="max-w-3xl mx-auto shadow-2xl border-0 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden">
         {/* Header Banner */}
         <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 px-8 py-8">
