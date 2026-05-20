@@ -12,6 +12,7 @@ import {
   FieldError,
   ListBox,
   TextArea,
+  toast,
 } from "@heroui/react";
 import {
   FaDollarSign,
@@ -20,15 +21,71 @@ import {
   FaCouch,
   FaTag,
 } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 export default function CarListingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // get session
+  const session = authClient.useSession();
+  const user = session.data?.user;
+
+  // submit handler
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    //token verification
+    const { data: jwtData } = await authClient.token();
+    const token = jwtData?.token;
+    if (!token) {
+      toast.error(" Authorization Failed. Booking Not Possible");
+      return;
+    }
+
+
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log("Form Data:", data);
+    const carName = formData.get("name");
+    const carType = formData.get("carType");
+    const dailyRentPrice = formData.get("dailyRentPrice");
+    const carImage = formData.get("image");
+    const seatCapacity = formData.get("seatCapacity");
+    const pickupLocation = formData.get("pickupLocation");
+    const description = formData.get("description");
+    const availabilityStatus = formData.get("availabilityStatus");
+
+    const carData = {
+      addedBy: user?.name,
+      userId: user?.id,
+      email: user?.email,
+      name: carName,
+      carType,
+      dailyRentPrice,
+      image: carImage,
+      seatCapacity,
+      pickupLocation,
+      description,
+      availabilityStatus,
+      addedAt: new Date().toISOString(),
+    };
+
+    // post api call
+    const res = await fetch(`http://localhost:5000/cars`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(carData),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      setIsSubmitting(false);
+      toast.success("Car listing created successfully!");
+      e.target.reset();
+    } else {
+      setIsSubmitting(false);
+      toast.error(data.message || "Failed to create car listing");
+    }
   };
 
   return (

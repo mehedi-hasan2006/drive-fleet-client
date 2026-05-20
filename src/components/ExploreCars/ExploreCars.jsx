@@ -1,7 +1,5 @@
 // components/ExploreCars.jsx  all cars card here
-"use client";
 
-import { useState } from "react";
 import { Card, Button, Input, Select, Chip } from "@heroui/react";
 import {
   FaCar,
@@ -18,27 +16,14 @@ import {
   FaFilter,
 } from "react-icons/fa";
 import Link from "next/link";
+import { fetchCars } from "@/lib/fetchData";
 
-export default function ExploreCars({ cars = [] }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedType, setSelectedType] = useState("all");
-  const [favorites, setFavorites] = useState([]);
+export default async function ExploreCars({ searchParams }) {
+  // console.log("Received Search Params in ExploreCars:", searchParams);
+  const sParams = await searchParams;
+  // console.log("Search Params in ExploreCars:", sParams);
 
-  const filteredCars = cars.filter((car) => {
-    const matchesSearch = car.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesType = selectedType === "all" || car.carType === selectedType;
-    return matchesSearch && matchesType;
-  });
-
-  const toggleFavorite = (carId) => {
-    setFavorites((prev) =>
-      prev.includes(carId)
-        ? prev.filter((id) => id !== carId)
-        : [...prev, carId],
-    );
-  };
+  const cars = await fetchCars(sParams?.searchTerm || "");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -58,12 +43,12 @@ export default function ExploreCars({ cars = [] }) {
         </div>
 
         {/* Stats Section */}
-        {filteredCars.length > 0 && (
+        {cars.length > 0 && (
           <div className="my-12 grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <FaCar className="w-8 h-8 text-blue-600 mx-auto mb-2" />
               <div className="text-3xl font-bold text-gray-800">
-                {filteredCars.length}
+                {cars.length}
               </div>
               <div className="text-sm text-gray-600">Available Cars</div>
             </div>
@@ -87,12 +72,7 @@ export default function ExploreCars({ cars = [] }) {
 
         {/* Search and Filter Section */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <Input
-            placeholder="Search cars by name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1"
-          />
+          <Input placeholder="Search cars by name..." className="flex-1" />
           {/* <Select
             placeholder="Filter by type"
             value={selectedType}
@@ -110,7 +90,7 @@ export default function ExploreCars({ cars = [] }) {
         </div>
 
         {/* Cars Grid */}
-        {filteredCars.length === 0 ? (
+        {cars.length === 0 ? (
           <div className="text-center py-20">
             <FaCar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold text-gray-500 mb-2">
@@ -122,7 +102,7 @@ export default function ExploreCars({ cars = [] }) {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCars.map((car) => (
+            {cars.map((car) => (
               <Card
                 key={car._id}
                 className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
@@ -136,25 +116,10 @@ export default function ExploreCars({ cars = [] }) {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                     <div className="absolute top-3 right-3 flex gap-2">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(car.id);
-                        }}
-                        className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
-                      >
-                        <FaHeart
-                          className={`w-4 h-4 ${
-                            favorites.includes(car.id)
-                              ? "text-red-500"
-                              : "text-gray-400"
-                          }`}
-                        />
+                      <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                        <FaHeart />
                       </button>
-                      <button
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
-                      >
+                      <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
                         <FaShareAlt className="w-4 h-4 text-gray-600" />
                       </button>
                     </div>

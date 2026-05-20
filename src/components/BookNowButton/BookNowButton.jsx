@@ -31,7 +31,6 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     const driverNeed = e.target.driverNeed.value;
     const message = e.target.message.value;
 
-    console.log({ driverNeed, message });
 
     const bookingData = {
       userId: session?.user?.id,

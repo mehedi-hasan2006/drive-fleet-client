@@ -1,6 +1,6 @@
-//fetch all the cars from server
-export const fetchCars = async () => {
-  const res = await fetch(`${process.env.SERVER_API_URL}/cars`);
+//fetch all the cars from server for explore cars
+export const fetchCars = async (searchTerm = "") => {
+  const res = await fetch(`${process.env.SERVER_API_URL}/cars?search=${searchTerm}`);
   const data = await res.json();
   return data || [];
 };
