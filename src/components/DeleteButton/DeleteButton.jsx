@@ -15,10 +15,10 @@ function DeleteButton({ car, carId }) {
     const { data: jwtData } = await authClient.token();
     const token = jwtData?.token;
     if (!token) {
-      toast.error(" Authorization Failed. Booking Not Possible");
+      toast.danger(" Authorization Failed. Booking Not Possible");
       return;
     }
-    
+
     const deleteApi = await deleteCarData(carId);
 
     window.location.reload();

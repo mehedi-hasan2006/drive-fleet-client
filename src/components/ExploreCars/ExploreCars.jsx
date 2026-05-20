@@ -17,13 +17,16 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import { fetchCars } from "@/lib/fetchData";
+import SearchInput from "./SearchInput";
+import CarTypeFilter from "./CarTypeFilter";
 
-export default async function ExploreCars({ searchParams }) {
-  // console.log("Received Search Params in ExploreCars:", searchParams);
-  const sParams = await searchParams;
-  // console.log("Search Params in ExploreCars:", sParams);
+const ExploreCars = async ({ searchParams }) => {
+  const sp = await searchParams;
 
-  const cars = await fetchCars(sParams?.searchTerm || "");
+  const searchTerm = sp?.searchTerm || "";
+  const type = sp?.type || "";
+
+  const cars = await fetchCars(searchTerm, type);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -72,21 +75,8 @@ export default async function ExploreCars({ searchParams }) {
 
         {/* Search and Filter Section */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <Input placeholder="Search cars by name..." className="flex-1" />
-          {/* <Select
-            placeholder="Filter by type"
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            className="w-full md:w-48"
-            
-          >
-            <option value="all">All Types</option>
-            <option value="suv">SUV</option>
-            <option value="sedan">Sedan</option>
-            <option value="hatchback">Hatchback</option>
-            <option value="luxury">Luxury</option>
-            <option value="sports">Sports</option>
-          </Select> */}
+          <SearchInput />
+          <CarTypeFilter />
         </div>
 
         {/* Cars Grid */}
@@ -214,4 +204,6 @@ export default async function ExploreCars({ searchParams }) {
       </div>
     </div>
   );
-}
+};
+
+export default ExploreCars;

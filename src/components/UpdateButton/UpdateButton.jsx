@@ -71,7 +71,7 @@ function UpdateButton({ car, carId }) {
       toast.success("Car data updated successfully");
       window.location.reload();
     } else {
-      toast.error("Car data update failed");
+      toast.danger("Car data update failed");
     }
   };
 

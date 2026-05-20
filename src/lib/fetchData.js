@@ -1,7 +1,17 @@
 //fetch all the cars from server for explore cars
-export const fetchCars = async (searchTerm = "") => {
+export const fetchCars = async (searchTerm, type) => {
+  const params = new URLSearchParams();
+
+  if (searchTerm) {
+    params.append("search", searchTerm);
+  }
+
+  if (type) {
+    params.append("type", type);
+  }
+
   const res = await fetch(
-    `${process.env.SERVER_API_URL}/cars?search=${searchTerm}`,
+    `${process.env.SERVER_API_URL}/cars?${params.toString()}`,
   );
   const data = await res.json();
   return data || [];
