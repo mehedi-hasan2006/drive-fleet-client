@@ -1,6 +1,8 @@
 //fetch all the cars from server for explore cars
 export const fetchCars = async (searchTerm = "") => {
-  const res = await fetch(`${process.env.SERVER_API_URL}/cars?search=${searchTerm}`);
+  const res = await fetch(
+    `${process.env.SERVER_API_URL}/cars?search=${searchTerm}`,
+  );
   const data = await res.json();
   return data || [];
 };
@@ -33,6 +35,21 @@ export const fetchBookingsData = async (userId, token) => {
     },
   });
 
+  const data = res.json();
+  return data;
+};
+
+
+// fetch add cars data for specific users
+export const fetchMyAddedCars = async (userId, token) => {
+  const res = await fetch(
+    `${process.env.SERVER_API_URL}/cars/my-added-cars/${userId}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}` || "",
+      },
+    },
+  );
   const data = res.json();
   return data;
 };

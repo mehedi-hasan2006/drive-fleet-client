@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 
 async function MyBookingsPage() {
+  
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });
