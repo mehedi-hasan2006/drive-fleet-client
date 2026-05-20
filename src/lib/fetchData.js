@@ -39,7 +39,6 @@ export const fetchBookingsData = async (userId, token) => {
   return data;
 };
 
-
 // fetch add cars data for specific users
 export const fetchMyAddedCars = async (userId, token) => {
   const res = await fetch(
@@ -51,5 +50,17 @@ export const fetchMyAddedCars = async (userId, token) => {
     },
   );
   const data = res.json();
+  return data;
+};
+
+// api for delete car data
+export const deleteCarData = async (carId) => {
+  const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+  const data = await res.json();
   return data;
 };

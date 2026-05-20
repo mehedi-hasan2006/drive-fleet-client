@@ -21,6 +21,7 @@ import {
   FaClock,
   FaPlus,
 } from "react-icons/fa";
+import DeleteButton from "@/components/DeleteButton/DeleteButton";
 
 async function MyAddedCarsPage() {
   const { token } = await auth.api.getToken({
@@ -296,14 +297,11 @@ async function MyAddedCarsPage() {
 
                     {/* Action Buttons */}
                     <div className="flex gap-3">
-                      <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl">
+                      <Button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-xl">
                         <FaEdit className="w-4 h-4" />
                         Update
-                      </button>
-                      <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-600 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-red-500/25 hover:shadow-xl">
-                        <FaTrash className="w-4 h-4" />
-                        Delete
-                      </button>
+                      </Button>
+                      <DeleteButton car={car} carId= {car._id} />
                     </div>
                   </div>
                 </div>
