@@ -31,14 +31,13 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     const driverNeed = e.target.driverNeed.value;
     const message = e.target.message.value;
 
-
     const bookingData = {
       userId: session?.user?.id,
       name: session?.user?.name,
       email: session?.user?.email,
       carTitle: carDetails?.name,
       carImage: carDetails?.image,
-      carPrice : carDetails?.dailyRentPrice,
+      carPrice: carDetails?.dailyRentPrice,
       driverNeed,
       message,
     };
@@ -61,6 +60,8 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     } else {
       toast.danger("Booking Failed. Please Try Again");
     }
+    
+    window.location.reload();
   };
 
   return (
