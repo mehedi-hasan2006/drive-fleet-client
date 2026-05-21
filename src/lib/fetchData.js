@@ -64,7 +64,7 @@ export const fetchMyAddedCars = async (userId, token) => {
 
 // api for delete car data
 export const deleteCarData = async (carId, token) => {
-  const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
+  const res = await fetch(`https://drive-fleet-server-lime.vercel.app/cars/my-added-cars/${carId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -77,7 +77,7 @@ export const deleteCarData = async (carId, token) => {
 
 // api for update car data
 export const updateCarData = async (carId, carData, token) => {
-  const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
+  const res = await fetch(`https://drive-fleet-server-lime.vercel.app/cars/my-added-cars/${carId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",

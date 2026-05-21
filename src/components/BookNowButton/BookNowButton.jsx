@@ -44,7 +44,7 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     };
 
     const res = await fetch(
-      `http://localhost:5000/bookings/${carDetails?._id}`,
+      `https://drive-fleet-server-lime.vercel.app/bookings/${carDetails?._id}`,
       {
         method: "PATCH",
         headers: {
