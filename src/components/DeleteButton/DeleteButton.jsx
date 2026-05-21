@@ -6,11 +6,11 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 
 function DeleteButton({ car, carId }) {
-  const handleDelete = async () => {
-    // get session
-    const session = authClient.useSession();
-    const user = session.data?.user;
+  // get session
+  const session = authClient.useSession();
+  const user = session.data?.user;
 
+  const handleDelete = async () => {
     //token verification
     const { data: jwtData } = await authClient.token();
     const token = jwtData?.token;
