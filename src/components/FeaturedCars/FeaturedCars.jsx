@@ -1,5 +1,5 @@
 import { featuredCars } from "@/lib/fetchData";
-import { Button, Card, Chip } from "@heroui/react";
+import { Button, Card, Chip, Separator } from "@heroui/react";
 import Link from "next/link";
 import {
   FaCalendarAlt,
@@ -50,14 +50,26 @@ async function FeaturedCars() {
                         <FaShareAlt className="w-4 h-4 text-gray-600" />
                       </button>
                     </div>
-                    {car.availabilityStatus && (
-                      <Chip
-                        className={`absolute top-3 left-3 ${car.availabilityStatus === "unavailable" ? "bg-red-100 text-red-700" : car.availabilityStatus === "under-maintenance" ? "bg-yellow-100 text-yellow-700" : car.availabilityStatus === "available" ? "bg-green-100 text-green-600" : ""}  font-semibold`}
-                        size="sm"
-                      >
-                        {car.availabilityStatus}
-                      </Chip>
-                    )}
+                    <div>
+                      {car.availabilityStatus && (
+                        <Chip
+                          className={`absolute top-3 left-3 ${car.availabilityStatus === "unavailable" ? "bg-red-100 text-red-700" : car.availabilityStatus === "under-maintenance" ? "bg-yellow-100 text-yellow-700" : car.availabilityStatus === "available" ? "bg-green-100 text-green-600" : ""}  font-semibold`}
+                          size="sm"
+                        >
+                          {car.availabilityStatus}
+                        </Chip>
+                      )}
+                    </div>
+                    <div>
+                      {car.carType && (
+                        <Chip
+                          className={`absolute top-3 left-25 ${car.carType === "Sedan" ? "bg-blue-100 text-blue-700" : car.carType === "SUV" ? "bg-green-100 text-green-700" : car.carType === "Hatchback" ? "bg-purple-100 text-purple-700" : ""}  font-semibold`}
+                          size="sm"
+                        >
+                          {car.carType}
+                        </Chip>
+                      )}
+                    </div>
                   </div>
 
                   {/* Content Section */}
@@ -92,7 +104,8 @@ async function FeaturedCars() {
                       {car.description}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-2 mb-4">
+                    <Separator className="my-4" />
+                    <div className="grid grid-cols-2 gap-2 my-4">
                       <div className="flex items-center gap-2 text-gray-600">
                         <FaUserFriends className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">
@@ -111,21 +124,26 @@ async function FeaturedCars() {
                       </div>
                       <div className="flex items-center gap-2 text-gray-600">
                         <FaCalendarAlt className="w-4 h-4 text-purple-500" />
-                        <span className="text-sm">{car.year || "2024"}</span>
+                        <span className="text-[13px]">
+                          Added on{" "}
+                          {car?.addedAt
+                            ? new Date(car.addedAt).toLocaleDateString(
+                                "en-US",
+                                {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                },
+                              )
+                            : "2026"}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex gap-2">
-                      <Button
-                        className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold hover:from-blue-700 hover:to-blue-800"
-                        size="md"
-                      >
-                        Rent Now
-                      </Button>
+                    <div className="w-full">
                       <Link href={`/car-details/${car._id}`}>
                         <Button
-                          className="flex-1 border-2 border-blue-600 text-blue-600 font-semibold hover:bg-blue-50"
-                          variant="bordered"
+                          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
                           size="md"
                         >
                           Details

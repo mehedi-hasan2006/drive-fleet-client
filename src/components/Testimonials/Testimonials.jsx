@@ -2,13 +2,7 @@
 "use client";
 
 import { Card, Avatar } from "@heroui/react";
-import {
-  FaStar,
-  FaQuoteLeft,
-  FaQuoteRight,
-  FaArrowLeft,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaStar, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -85,7 +79,9 @@ export default function TestimonialsSection() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
             <FaStar className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-semibold text-blue-600">Testimonials</span>
+            <span className="text-sm font-semibold text-blue-600">
+              Testimonials
+            </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             What Our{" "}
@@ -94,7 +90,8 @@ export default function TestimonialsSection() {
             </span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about their experience.
+            Don't just take our word for it. Here's what our satisfied customers
+            have to say about their experience.
           </p>
         </div>
 
@@ -141,18 +138,25 @@ export default function TestimonialsSection() {
                 {/* Divider */}
                 <div className="border-t border-gray-100 pt-4">
                   <div className="flex items-center gap-3">
-                    <Avatar
-                      src={testimonial.avatar}
-                      className="ring-2 ring-blue-100"
-                      size="md"
-                    />
+                    <Avatar>
+                      <Avatar.Image
+                        src={testimonial.avatar}
+                        className="ring-2 ring-blue-100"
+                        size="md"
+                      />
+                    </Avatar>
+
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-800 text-sm">
                         {testimonial.name}
                       </h4>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+                      <p className="text-xs text-gray-500">
+                        {testimonial.role}
+                      </p>
                     </div>
-                    <span className="text-xs text-gray-400">{testimonial.date}</span>
+                    <span className="text-xs text-gray-400">
+                      {testimonial.date}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -163,10 +167,30 @@ export default function TestimonialsSection() {
         {/* Bottom Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { value: "4.9", label: "Average Rating", icon: FaStar, color: "text-yellow-500" },
-            { value: "10k+", label: "Happy Customers", icon: FaQuoteRight, color: "text-blue-500" },
-            { value: "500+", label: "Reviews", icon: FaStar, color: "text-purple-500" },
-            { value: "98%", label: "Satisfaction Rate", icon: FaQuoteRight, color: "text-green-500" },
+            {
+              value: "4.9",
+              label: "Average Rating",
+              icon: FaStar,
+              color: "text-yellow-500",
+            },
+            {
+              value: "10k+",
+              label: "Happy Customers",
+              icon: FaQuoteRight,
+              color: "text-blue-500",
+            },
+            {
+              value: "500+",
+              label: "Reviews",
+              icon: FaStar,
+              color: "text-purple-500",
+            },
+            {
+              value: "98%",
+              label: "Satisfaction Rate",
+              icon: FaQuoteRight,
+              color: "text-green-500",
+            },
           ].map((stat, index) => (
             <div
               key={index}

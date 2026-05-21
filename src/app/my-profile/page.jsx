@@ -64,7 +64,7 @@ function MyProfilePage() {
                 <Modal.CloseTrigger />
 
                 <Modal.Header>
-                  <Modal.Icon className="bg-rose-200 text-rose-600">
+                  <Modal.Icon className="bg-purple-200 text-purple-600">
                     <FaEdit />
                   </Modal.Icon>
                   <Modal.Heading>Edit Profile</Modal.Heading>
@@ -95,7 +95,7 @@ function MyProfilePage() {
                         <Button
                           slot="close"
                           variant="secondary"
-                          className="text-rose-500"
+                          className="text-purple-500"
                         >
                           Cancel
                         </Button>
@@ -103,7 +103,7 @@ function MyProfilePage() {
                         <Button
                           type="submit"
                           slot="close"
-                          className="bg-linear-to-r from-amber-500 to-rose-500 text-white"
+                          className="bg-linear-to-r from-purple-500 to-blue-500 text-white"
                         >
                           Update
                         </Button>

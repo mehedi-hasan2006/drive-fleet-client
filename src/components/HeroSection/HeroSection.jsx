@@ -58,8 +58,8 @@ export default function HeroSection() {
                 </span>
               </h1>
               <p className="text-xl text-blue-100/80 mt-6 leading-relaxed max-w-xl">
-                Discover an unparalleled selection of premium vehicles at unbeatable prices. 
-                Your journey begins with the perfect car.
+                Discover an unparalleled selection of premium vehicles at
+                unbeatable prices. Your journey begins with the perfect car.
               </p>
             </div>
 
@@ -124,11 +124,6 @@ export default function HeroSection() {
                   </span>
                 </Button>
               </Link>
-              <Link href="/how-it-works">
-                <Button className="w-full sm:w-auto px-8 py-6 bg-white/10 backdrop-blur-sm text-white font-bold text-lg rounded-xl border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300">
-                  How It Works
-                </Button>
-              </Link>
             </div>
           </div>
 
@@ -143,7 +138,7 @@ export default function HeroSection() {
                   className="w-full h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                
+
                 {/* Car Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <div className="flex items-center gap-2 mb-2">
@@ -157,7 +152,9 @@ export default function HeroSection() {
                       <span className="text-sm ml-1">4.9</span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-1">Mercedes-Benz S-Class</h3>
+                  <h3 className="text-2xl font-bold mb-1">
+                    Mercedes-Benz S-Class
+                  </h3>
                   <div className="flex items-center justify-between">
                     <span className="text-blue-200">Luxury Sedan</span>
                     <div className="text-right">
@@ -175,7 +172,9 @@ export default function HeroSection() {
                     <FaShieldAlt className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-gray-800">Fully Insured</div>
+                    <div className="text-sm font-bold text-gray-800">
+                      Fully Insured
+                    </div>
                     <div className="text-xs text-gray-500">Peace of mind</div>
                   </div>
                 </div>
@@ -187,7 +186,9 @@ export default function HeroSection() {
                     <FaHeadset className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-gray-800">24/7 Support</div>
+                    <div className="text-sm font-bold text-gray-800">
+                      24/7 Support
+                    </div>
                     <div className="text-xs text-gray-500">Always here</div>
                   </div>
                 </div>
@@ -200,7 +201,9 @@ export default function HeroSection() {
                   </div>
                   <div>
                     <div className="text-xs text-gray-500">Best Price</div>
-                    <div className="text-sm font-bold text-green-600">Guaranteed</div>
+                    <div className="text-sm font-bold text-green-600">
+                      Guaranteed
+                    </div>
                   </div>
                 </div>
               </div>

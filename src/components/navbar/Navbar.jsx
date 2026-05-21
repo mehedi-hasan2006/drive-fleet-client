@@ -11,8 +11,6 @@ import {
   FaPlusCircle,
   FaUser,
   FaSignOutAlt,
-  FaCog,
-  FaHeart,
   FaHistory,
   FaChevronDown,
   FaBars,
