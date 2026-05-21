@@ -69,7 +69,7 @@ export default function CarListingForm() {
     };
 
     // post api call
-    const res = await fetch(`http://localhost:5000/cars`, {
+    const res = await fetch(`https://drive-fleet-server-lime.vercel.app/cars`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
