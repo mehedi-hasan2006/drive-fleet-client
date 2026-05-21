@@ -59,7 +59,7 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     if (res.ok) {
       toast.success("Booking Successful!");
     } else {
-      toast.error("Booking Failed. Please Try Again");
+      toast.danger("Booking Failed. Please Try Again");
     }
   };
 

@@ -30,6 +30,7 @@ import BookNowButton from "@/components/BookNowButton/BookNowButton";
 async function SingleCarDetailsPage({ params }) {
   const { id } = await params;
 
+  // token verification for server compnents 
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });

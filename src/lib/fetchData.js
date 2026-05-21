@@ -36,8 +36,7 @@ export const fetchSingleCar = async (id, token) => {
   return data;
 };
 
-// fetch bookings data for specific users
-
+// fetch bookings data for specific users || my bookings
 export const fetchBookingsData = async (userId, token) => {
   const res = await fetch(`${process.env.SERVER_API_URL}/bookings/${userId}`, {
     headers: {
@@ -64,11 +63,12 @@ export const fetchMyAddedCars = async (userId, token) => {
 };
 
 // api for delete car data
-export const deleteCarData = async (carId) => {
+export const deleteCarData = async (carId, token) => {
   const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${token}` || "",
     },
   });
   const data = await res.json();
@@ -76,11 +76,12 @@ export const deleteCarData = async (carId) => {
 };
 
 // api for update car data
-export const updateCarData = async (carId, carData) => {
+export const updateCarData = async (carId, carData, token) => {
   const res = await fetch(`http://localhost:5000/cars/my-added-cars/${carId}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
+      authorization: `Bearer ${token}` || "",
     },
     body: JSON.stringify(carData),
   });

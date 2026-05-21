@@ -34,14 +34,14 @@ export default function CarListingForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    //token verification
+    //token verification for client components
     const { data: jwtData } = await authClient.token();
     const token = jwtData?.token;
+
     if (!token) {
-      toast.error(" Authorization Failed. Booking Not Possible");
+      toast.danger(" Authorization Failed. Booking Not Possible");
       return;
     }
-
 
     const formData = new FormData(e.target);
     const carName = formData.get("name");
@@ -73,6 +73,7 @@ export default function CarListingForm() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}` || "",
       },
       body: JSON.stringify(carData),
     });
@@ -84,7 +85,7 @@ export default function CarListingForm() {
       e.target.reset();
     } else {
       setIsSubmitting(false);
-      toast.error(data.message || "Failed to create car listing");
+      toast.danger(data.message || "Failed to create car listing");
     }
   };
 

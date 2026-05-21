@@ -36,7 +36,7 @@ function UpdateButton({ car, carId }) {
     const { data: jwtData } = await authClient.token();
     const token = jwtData?.token;
     if (!token) {
-      toast.error(" Authorization Failed. Booking Not Possible");
+      toast.danger(" Authorization Failed. Updating Not Possible");
       return;
     }
 
@@ -63,9 +63,8 @@ function UpdateButton({ car, carId }) {
       updateAt: new Date(),
     };
 
-    const updateCarInfo = await updateCarData(carId, carData);
+    const updateCarInfo = await updateCarData(carId, carData, token);
     const data = updateCarInfo;
-    console.log(data);
 
     if (data.modifiedCount > 0) {
       toast.success("Car data updated successfully");

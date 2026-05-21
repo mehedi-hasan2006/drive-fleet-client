@@ -1,3 +1,4 @@
+// my bookings page
 import { auth } from "@/lib/auth";
 import { fetchBookingsData } from "@/lib/fetchData";
 import { headers } from "next/headers";
@@ -7,12 +8,8 @@ import {
   FaCalendarAlt,
   FaUser,
   FaEnvelope,
-  FaMapMarkerAlt,
   FaDollarSign,
   FaClock,
-  FaCheckCircle,
-  FaTimesCircle,
-  FaHourglassHalf,
   FaArrowRight,
 } from "react-icons/fa";
 import Link from "next/link";
