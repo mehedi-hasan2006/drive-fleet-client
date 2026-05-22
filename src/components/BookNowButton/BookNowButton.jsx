@@ -57,11 +57,10 @@ function BookNowButton({ availabilityStatus, carDetails }) {
     const data = await res.json();
     if (res.ok) {
       toast.success("Booking Successful!");
+      window.location.reload();
     } else {
       toast.danger("Booking Failed. Please Try Again");
     }
-    
-    window.location.reload();
   };
 
   return (
