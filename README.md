@@ -6,6 +6,8 @@
 
 A modern, full-featured car rental platform built with Next.js — browse a premium fleet, book instantly, and manage your rentals with ease.
 
+<img src="./public/drivefleet.png" style="margin-bottom : 20px" >
+
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-drivee--fleet--client.vercel.app-blue?style=for-the-badge&logo=vercel)](https://drivee-fleet.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.4-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
